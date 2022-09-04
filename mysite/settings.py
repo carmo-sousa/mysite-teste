@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+# Módulo para importar as variáveis de ambiente.
+import os
 
 from pathlib import Path
 
@@ -75,8 +77,12 @@ WSGI_APPLICATION = "mysite.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("NAME"),
+        "USER": os.environ.get("USER"),
+        "PASSWORD": os.environ.get("PASSWORD"),
+        "HOST": os.environ.get("HOST"),
+        "PORT": "5432",
     }
 }
 
